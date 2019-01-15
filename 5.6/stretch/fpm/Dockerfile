@@ -1,7 +1,5 @@
 FROM php:5.6-fpm
 
-COPY ./sources.list /etc/apt/sources.list
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -q
 RUN DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
@@ -24,5 +22,7 @@ RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install json 
 RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable redis
+
+RUN apt-get update && apt-get install -y iputils-ping
 
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
