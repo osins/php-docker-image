@@ -46,7 +46,7 @@ $ docker run -it --rm --name my-running-script -v "$PWD":/var/www/code -w /var/w
 ```
 ### Nginx + PHP fpm 
 
-#### Nginx server config
+#### Nginx server config default.conf :
 ```nginx config
 
 server {
