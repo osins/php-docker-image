@@ -24,5 +24,8 @@ RUN docker-php-ext-enable memcached
 RUN docker-php-ext-enable redis
 
 RUN apt-get update && apt-get install -y iputils-ping
+RUN apt-get install -y git wget nano unzip inetutils-ping 
+RUN wget https://getcomposer.org/download/1.8.0/composer.phar && mv composer.phar /usr/local/bin/composer && chmod -R 777 /usr/local/bin/composer 
+RUN composer config -g repo.packagist composer https://packagist.phpcomposer.com
 
 CMD ["/usr/local/sbin/php-fpm", "--nodaemonize"]
