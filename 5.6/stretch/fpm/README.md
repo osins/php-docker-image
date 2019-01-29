@@ -2,7 +2,7 @@
 
 the image is a php-fpm by 5.6.40
 
-[git hub]:(https://github.com/wangsying/php)(https://github.com/wangsying/php)
+[git hub]:(https://github.com/wangsying/php):https://github.com/wangsying/php
 
 ## the image suppprt:
 
