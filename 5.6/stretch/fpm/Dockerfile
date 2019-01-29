@@ -1,5 +1,6 @@
 FROM php:5.6-fpm
 
+COPY sources.163.list /etc/apt/sources.list
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -q
 RUN DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y 
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
