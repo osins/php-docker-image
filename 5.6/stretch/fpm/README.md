@@ -46,6 +46,12 @@ $ docker run -it --rm --name my-running-script -v "$PWD":/var/www/code -w /var/w
 ```
 ### Nginx + PHP fpm 
 
+#### Install Docker Compose
+
+You can run Compose on macOS, Windows, and 64-bit Linux.
+
+[docker-compose install:](https://docs.docker.com/compose/install/)(https://docs.docker.com/compose/install/)
+
 #### Nginx server config default.conf :
 ```nginx config
 
