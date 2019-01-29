@@ -1,0 +1,1 @@
+2019/01/29 10:32:46 [error] 6#6: *1 directory index of "/var/www/code/" is forbidden, client: 172.21.0.1, server: _, request: "GET / HTTP/1.1", host: "nginx:8080"

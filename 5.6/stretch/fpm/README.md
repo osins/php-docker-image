@@ -76,27 +76,27 @@ services:
     privileged: true
     restart: always
     depends_on:
-        - "php5-fpm"
+      - "php5-fpm"
     ports:
-        - '8080:80'
+      - '8080:80'
     networks:        
-        - "webapp-network"
+      - "webapp-network"
     volumes:
-        - $PWD/default.conf:/etc/nginx/conf.d/default.conf
-        - $PWD/log/nginx:/var/log
-        - $PWD/code:/var/www/code
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./log/nginx:/var/log/nginx
+      - ./code:/var/www/code
 
-php5-fpm:
-  image: wangsying/php5
-  container_name: php5-fpm
-  hostname: php5-fpm
-  privileged: true
-  restart: always
-  networks:        
-  - "webapp-network"
-  volumes:
-    - $PWD/log/nginx:/var/log
-    - $PWD/code:/var/www/code
+  php5-fpm:
+    image: wangsying/php5
+    container_name: php5-fpm
+    hostname: php5-fpm
+    privileged: true
+    restart: always
+    networks:        
+      - "webapp-network"
+    volumes:
+      - ./log/nginx:/var/log
+      - ./code:/var/www/code
 
 networks:
   webapp-network:
@@ -111,11 +111,13 @@ docker-compose start:
 ```docker-compose run
 
 docker-compose up -d
+docker-compose ps
 
 ```
 docker-compose down:
 ```
 
 docker-compose down -v
+docker-compose ps
 
 ```

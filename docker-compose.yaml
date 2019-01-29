@@ -1,0 +1,37 @@
+version: '3.3'
+services:        
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: nginx
+    privileged: true
+    restart: always
+    depends_on:
+      - "php5-fpm"
+    ports:
+      - '8080:80'
+    networks:        
+      - "webapp-network"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./log/nginx:/var/log/nginx
+      - ./code:/var/www/code
+
+  php5-fpm:
+    image: wangsying/php5
+    container_name: php5-fpm
+    hostname: php5-fpm
+    privileged: true
+    restart: always
+    networks:        
+      - "webapp-network"
+    volumes:
+      - ./log/nginx:/var/log
+      - ./code:/var/www/code
+
+networks:
+  webapp-network:
+    driver: bridge
+  default:
+    external:
+      name: webapp-network
