@@ -3,6 +3,8 @@
 the image is a php-fpm by 5.6.40
 
 ## the image suppprt:
+
+```console
 redis
 memcached
 iconv
@@ -14,7 +16,7 @@ pdo
 pdo_mysql
 mbstring
 json
-memcached
+```
 
 ## How to use this image
 ### Create a `Dockerfile` in your PHP project
