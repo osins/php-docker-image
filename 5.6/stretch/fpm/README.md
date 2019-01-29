@@ -53,7 +53,7 @@ server {
     location ~ \.php {
         root /var/www/code;
 
-        fastcgi_pass ys-php5-fpm:9000;
+        fastcgi_pass php5-fpm:9000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
         include fastcgi_params;
@@ -76,9 +76,9 @@ services:
     privileged: true
     restart: always
     depends_on:
-        - "ys-php5-fpm"
+        - "php5-fpm"
     ports:
-        - '8010:80'
+        - '8080:80'
     networks:        
         - "webapp-network"
     volumes:
