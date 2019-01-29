@@ -42,3 +42,80 @@ For many simple, single file projects, you may find it inconvenient to write a c
 ```console
 $ docker run -it --rm --name my-running-script -v "$PWD":/var/www/code -w /var/www/code wangsying/php5 php your-script.php
 ```
+### Nginx + PHP fpm 
+
+#### Nginx server config
+```nginx config
+
+server {
+    ...
+
+    location ~ \.php {
+        root /var/www/code;
+
+        fastcgi_pass ys-php5-fpm:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+    ...
+}
+```
+
+#### docker compose config docker-compose.yaml :
+
+```compose config
+
+version: '3.3'
+services:        
+  nginx:
+    image: nginx
+    container_name: nginx
+    hostname: nginx
+    privileged: true
+    restart: always
+    depends_on:
+        - "ys-php5-fpm"
+    ports:
+        - '8010:80'
+    networks:        
+        - "webapp-network"
+    volumes:
+        - $PWD/default.conf:/etc/nginx/conf.d/default.conf
+        - $PWD/log/nginx:/var/log
+        - $PWD/code:/var/www/code
+
+php5-fpm:
+  image: wangsying/php5
+  container_name: php5-fpm
+  hostname: php5-fpm
+  privileged: true
+  restart: always
+  networks:        
+  - "webapp-network"
+  volumes:
+    - $PWD/log/nginx:/var/log
+    - $PWD/code:/var/www/code
+
+networks:
+  webapp-network:
+    driver: bridge
+  default:
+    external:
+      name: webapp-network
+
+```
+
+docker-compose start:
+```docker-compose run
+
+docker-compose up -d
+
+```
+docker-compose down:
+```
+
+docker-compose down -v
+
+```
