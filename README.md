@@ -7,6 +7,8 @@ the image is a php-fpm by 5.6.40
 ## the image suppprt:
 
 ```console
+git
+composer
 redis
 memcached
 iconv
